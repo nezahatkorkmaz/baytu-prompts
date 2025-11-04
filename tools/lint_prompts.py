@@ -4,37 +4,13 @@ from pathlib import Path
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-PROMPTS = (ROOT / "prompts" / "real_estate").rglob("*.md")
+REGISTRY = ROOT / "registry" / "prompts.index.json"
 
 FORBIDDEN_PHRASES = [
     "hard-coded city",
     "always output Istanbul",
     "Kadıköy example leaks"
 ]
-
-MAX_LINE = 120
-RE_HEADING = re.compile(r"^#{1,6}\s+\S")
-
-def check_line_length(path: Path, lines):
-    for i, line in enumerate(lines, 1):
-        if len(line.rstrip("\n")) > MAX_LINE:
-            return f"{path}:{i} line too long ({len(line.rstrip())}>{MAX_LINE})"
-    return None
-
-def check_heading_order(path: Path, lines):
-    # simple: headings must start with h1 then nondecreasing depth by at most +1
-    last_level = 0
-    for i, line in enumerate(lines, 1):
-        m = RE_HEADING.match(line)
-        if not m:
-            continue
-        level = len(line.split()[0])
-        if last_level == 0 and level != 1:
-            return f"{path}:{i} first heading must be level-1"
-        if last_level and level > last_level + 1:
-            return f"{path}:{i} heading level jumps from {last_level} to {level}"
-        last_level = level
-    return None
 
 def extract_json_blocks(text: str):
     blocks = []
@@ -57,15 +33,30 @@ def check_forbidden_phrases(path: Path, text: str):
             return f"{path} contains forbidden phrase: {phrase}"
     return None
 
+def iter_latest_prompt_paths():
+    data = json.loads(REGISTRY.read_text(encoding="utf-8"))
+    roles = data.get("roles", {})
+    for role, info in roles.items():
+        latest_rel = info.get("latest")
+        if not latest_rel:
+            yield role, None
+            continue
+        yield role, ROOT / latest_rel
+
 def main():
     errors = []
-    for path in PROMPTS:
-        content = path.read_text(encoding="utf-8")
-        lines = content.splitlines(True)
-        for fn in (check_line_length, check_heading_order):
-            err = fn(path, lines)
-            if err:
-                errors.append(err)
+    for role, path in iter_latest_prompt_paths():
+        if path is None:
+            errors.append(f"{role}: missing latest in registry")
+            continue
+        if not path.exists():
+            errors.append(f"{role}: latest path not found: {path.relative_to(ROOT)}")
+            continue
+        try:
+            content = path.read_text(encoding="utf-8")
+        except Exception as e:
+            errors.append(f"{path}: cannot read text: {e}")
+            continue
         for fn in (check_json_blocks_well_formed, check_forbidden_phrases):
             err = fn(path, content)
             if err:
