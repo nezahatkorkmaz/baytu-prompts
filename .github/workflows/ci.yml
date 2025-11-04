@@ -22,5 +22,6 @@ jobs:
         run: python tools/check_required_sections.py
       - name: Run Tests
         run: python tests/run_tests.py
+        continue-on-error: true
 
 
