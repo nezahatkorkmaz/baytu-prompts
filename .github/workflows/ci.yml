@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Lint Prompts
+        run: python tools/lint_prompts.py
+      - name: Validate Registry
+        run: python tools/validate_registry.py
+      - name: Check Required Sections
+        run: python tools/check_required_sections.py
+      - name: Run Tests
+        run: python tests/run_tests.py
+
+

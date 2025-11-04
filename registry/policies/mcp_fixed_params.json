@@ -1,0 +1,34 @@
+{
+  "field_mask": " *",
+  "max_result": 10,
+  "radius": 1000,
+  "included_types": [
+    "school",
+    "primary_school",
+    "secondary_school",
+    "university",
+    "hospital",
+    "doctor",
+    "pharmacy",
+    "dental_clinic",
+    "subway_station",
+    "bus_station",
+    "train_station",
+    "transit_station",
+    "supermarket",
+    "shopping_mall",
+    "grocery_store",
+    "bank",
+    "atm",
+    "police",
+    "post_office",
+    "park",
+    "gym",
+    "restaurant",
+    "cafe",
+    "mosque",
+    "church"
+  ]
+}
+
+
