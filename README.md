@@ -73,7 +73,7 @@ See the repository tree in the root of this archive, or browse:
 
 ## Choosing prompt versions
 
-- Stable selection: use the explicit version path (e.g., `prompts/real_estate/default/v4.md`)
+- Stable selection: use the explicit version path (e.g., `prompts/real_estate/default/v3.md`)
 - Rolling selection: resolve `latest` via `registry/prompts.index.json`
 
 ## License

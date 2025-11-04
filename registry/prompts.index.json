@@ -3,9 +3,8 @@
   "project": "real-estate-prompt-registry",
   "roles": {
     "default": {
-      "latest": "prompts/real_estate/default/v4.md",
+      "latest": "prompts/real_estate/default/v3.md",
       "versions": [
-        "prompts/real_estate/default/v4.md",
         "prompts/real_estate/default/v3.md",
         "prompts/real_estate/default/v2.md",
         "prompts/real_estate/default/v1.md",
