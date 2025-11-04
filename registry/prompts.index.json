@@ -3,27 +3,31 @@
   "project": "real-estate-prompt-registry",
   "roles": {
     "default": {
-      "latest": "prompts/real_estate/default/v3.1.md",
+      "latest": "prompts/real_estate/default/v4.md",
       "versions": [
-        "prompts/real_estate/default/v3.1.md",
-        "prompts/real_estate/default/v3.0.md",
-        "prompts/real_estate/default/v2.0.md"
+        "prompts/real_estate/default/v4.md",
+        "prompts/real_estate/default/v3.md",
+        "prompts/real_estate/default/v2.md",
+        "prompts/real_estate/default/v1.md",
+        "prompts/real_estate/default/v0.md"
       ]
     },
     "translation": {
-      "latest": "prompts/real_estate/translation/v3.1.md",
+      "latest": "prompts/real_estate/translation/v3.md",
       "versions": [
-        "prompts/real_estate/translation/v3.1.md",
-        "prompts/real_estate/translation/v3.0.md",
-        "prompts/real_estate/translation/v2.0.md"
+        "prompts/real_estate/translation/v3.md",
+        "prompts/real_estate/translation/v2.md",
+        "prompts/real_estate/translation/v1.md",
+        "prompts/real_estate/translation/v0.md"
       ]
     },
     "assistant": {
-      "latest": "prompts/real_estate/assistant/v3.1.md",
+      "latest": "prompts/real_estate/assistant/v3.md",
       "versions": [
-        "prompts/real_estate/assistant/v3.1.md",
-        "prompts/real_estate/assistant/v3.0.md",
-        "prompts/real_estate/assistant/v2.0.md"
+        "prompts/real_estate/assistant/v3.md",
+        "prompts/real_estate/assistant/v2.md",
+        "prompts/real_estate/assistant/v1.md",
+        "prompts/real_estate/assistant/v0.md"
       ]
     }
   }
